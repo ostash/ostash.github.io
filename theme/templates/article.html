@@ -1,0 +1,60 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+{% extends "base.html" %}
+{% block title %}{{ article.title }} &ndash; {{ SITENAME }}{% endblock %}
+{% block og %}
+    <meta property="og:title" content="{{ article.title|striptags }}">
+    <meta property="og:description"
+          content="{{ article.summary|striptags|truncate(160) }}">
+    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+    <meta property="og:type" content="article">
+{% endblock %}
+{% block content %}
+    <article>
+        <header class="article-header">
+            <h1>{{ article.title }}</h1>
+            <div class="article-meta">
+                <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+                {% if article.modified %}
+                    <span class="modified">(updated {{ article.modified.strftime("%Y-%m-%d") }})</span>
+                {% endif %}
+                {% if article.tags %}
+                    <span class="article-tags">
+                        {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a> {% endfor %}
+                    </span>
+                {% endif %}
+            </div>
+        </header>
+        <div class="article-content">{{ article.content }}</div>
+        {% if article.prev_article or article.next_article %}
+        <nav class="article-nav">
+            {% if article.prev_article %}
+                <a href="{{ SITEURL }}/{{ article.prev_article.url }}">&larr; {{ article.prev_article.title }}</a>
+            {% endif %}
+            {% if article.next_article %}
+                <a href="{{ SITEURL }}/{{ article.next_article.url }}" class="nav-next">{{ article.next_article.title }} &rarr;</a>
+            {% endif %}
+        </nav>
+        {% endif %}
+        {% if GISCUS %}
+            <section class="comments">
+                <h2>Comments</h2>
+                <script src="https://giscus.app/client.js"
+                    {% for key, value in GISCUS.items() %}
+                        data-{{ key | replace('_', '-') }}="{{ value }}"
+                    {% endfor %}
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </section>
+        {% endif %}
+    </article>
+{% endblock %}
+{% block copyright %}
+    &copy; {{ article.date.year }} {{ article.author if article.author else AUTHOR }}
+    {% set license = article.license if article.license else DEFAULT_LICENSE %}
+    <a href="https://spdx.org/licenses/{{ license }}.html">{{ license }}</a>
+    {% if article['code-license'] %}
+        · code: <a href="https://spdx.org/licenses/{{ article['code-license'] }}">{{ article['code-license'] }}</a>
+    {% endif %}
+{% endblock %}

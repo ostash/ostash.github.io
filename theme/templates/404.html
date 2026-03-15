@@ -1,0 +1,12 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+{% extends "base.html" %}
+{% block title %}404 &ndash; {{ SITENAME }}{% endblock %}
+{% block content %}
+    <div class="error-page">
+        <h1>404</h1>
+        <p>
+            Page not found. <a href="{{ SITEURL }}/">Go home.</a>
+        </p>
+    </div>
+{% endblock %}

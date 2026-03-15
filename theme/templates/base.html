@@ -1,0 +1,56 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}{{ SITENAME }}{% endblock %}
+        </title>
+        <link rel="stylesheet" href="{{ SITEURL }}/theme/style.css">
+        <link rel="alternate"
+              type="application/atom+xml"
+              title="{{ SITENAME }} Atom Feed"
+              href="{{ SITEURL }}/feeds/all.atom.xml">
+        <link rel="alternate"
+              type="application/rss+xml"
+              title="{{ SITENAME }} RSS Feed"
+              href="{{ SITEURL }}/feeds/all.rss.xml">
+        {% block extra_head %}{% endblock %}
+        {% block og %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="header-inner">
+                <a href="{{ SITEURL }}/" class="site-title">{{ SITENAME }}</a>
+                {% if SITESUBTITLE %}<span class="site-subtitle">{{ SITESUBTITLE }}</span>{% endif %}
+                <nav>
+                    <a href="{{ SITEURL }}/tags.html">tags</a>
+                    <a href="{{ SITEURL }}/archives.html">all posts</a>
+                    {% for p in pages %}<a href="{{ SITEURL }}/{{ p.url }}">{{ p.title|lower }}</a>{% endfor %}
+                </nav>
+            </div>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <div class="footer-inner">
+                {% if SOCIAL %}
+                    <div class="social">
+                        {% for name, url in SOCIAL %}<a href="{{ url }}">{{ name }}</a>{% endfor %}
+                    </div>
+                {% endif %}
+                <a href="{{ SITEURL }}/feeds/all.atom.xml" class="feed-link">atom</a>
+                <a href="{{ SITEURL }}/feeds/all.rss.xml" class="feed-link">rss</a>
+            </div>
+        </footer>
+        <div class="site-copyright">
+            {% block copyright %}&copy; {{ DEFAULT_COPYRIGHT_YEAR }} {{ AUTHOR }}{% endblock %}
+        </div>
+    </body>
+{% if ANALYTICS %}
+{{ ANALYTICS }}
+{% endif %}
+</html>

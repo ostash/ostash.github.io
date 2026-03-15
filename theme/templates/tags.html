@@ -1,0 +1,15 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+{% extends "base.html" %}
+{% block title %}Tags &ndash; {{ SITENAME }}{% endblock %}
+{% block content %}
+    <h1>Tags</h1>
+    <ul class="tag-list">
+        {% for tag, tag_articles in tags | sort %}
+            <li>
+                <a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a>
+                <span class="tag-count">{{ tag_articles | count }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,22 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+{% extends "base.html" %}
+{% block title %}Archive &ndash; {{ SITENAME }}{% endblock %}
+{% block content %}
+    <h1>Archive</h1>
+    <div class="archive">
+        {% for year, year_articles in articles | groupby('date.year') | sort(reverse=True) %}
+            <section class="archive-year">
+                <h2>{{ year }}</h2>
+                <ul>
+                    {% for article in year_articles | sort(attribute='date', reverse=True) %}
+                        <li>
+                            <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%m-%d") }}</time>
+                            <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
+{# SPDX-License-Identifier: CC-BY-SA-4.0 #}
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }}{% endblock %}
+{% block content %}
+    <div class="post-list">
+        {% for article in articles_page.object_list %}
+            <article class="post-entry">
+                <div class="post-meta">
+                    <time datetime="{{ article.date.isoformat() }}">{{ article.date.strftime("%Y-%m-%d") }}</time>
+                    {% if article.tags %}
+                        <span class="post-tags">
+                            {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">#{{ tag }}</a> {% endfor %}
+                        </span>
+                    {% endif %}
+                </div>
+                <h2>
+                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+                </h2>
+                {% if article.summary %}<div class="post-summary">{{ article.summary }}</div>{% endif %}
+            </article>
+        {% endfor %}
+        {% if articles_page.has_other_pages() %}
+            <nav class="pagination">
+                {% if articles_page.has_previous() %}
+                    <a href="{{ SITEURL }}/{{ articles_previous_page.save_as }}">&larr; newer</a>
+                {% endif %}
+                {% if articles_page.has_next() %}<a href="{{ SITEURL }}/{{ articles_next_page.save_as }}">older &rarr;</a>{% endif %}
+            </nav>
+        {% endif %}
+    </div>
+{% endblock %}
