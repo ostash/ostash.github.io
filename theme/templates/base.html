@@ -49,8 +49,8 @@
         <div class="site-copyright">
             {% block copyright %}&copy; {{ DEFAULT_COPYRIGHT_YEAR }} {{ AUTHOR }}{% endblock %}
         </div>
+        {% if ANALYTICS %}
+        {{ ANALYTICS }}
+        {% endif %}
     </body>
-{% if ANALYTICS %}
-{{ ANALYTICS }}
-{% endif %}
 </html>

@@ -9,4 +9,8 @@ from pelicanconf import *
 
 SITEURL = "https://blog.ostash.kiev.ua"
 RELATIVE_URLS = False
-# ANALYTICS = TODO
+
+ANALYTICS = """
+<script data-goatcounter="https://ostash.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+"""
