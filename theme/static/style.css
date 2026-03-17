@@ -497,6 +497,25 @@ footer {
     border-top: 1px solid var(--border);
 }
 
+/* Mermaid diagrams */
+.diagram {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.diagram pre.mermaid {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.diagram svg {
+    max-width: 100%;
+    height: auto;
+}
+
 /* ── 404 ── */
 .error-page {
     text-align: center;

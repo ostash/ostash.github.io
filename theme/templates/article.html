@@ -49,6 +49,44 @@
             </section>
         {% endif %}
     </article>
+    {% if 'class="mermaid"' in article.content %}
+        <script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+          const v = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+          mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+              // base
+              background:           v('--bg'),
+              primaryColor:         v('--bg-subtle'),
+              primaryBorderColor:   v('--border'),
+              primaryTextColor:     v('--fg'),
+              lineColor:            v('--fg-muted'),
+              edgeLabelBackground:  v('--bg-subtle'),
+              // highlighted nodes
+              secondaryColor:       v('--bg-subtle'),
+              secondaryBorderColor: v('--accent'),
+              secondaryTextColor:   v('--fg'),
+              // tertiary / clusters
+              tertiaryColor:        v('--bg-subtle'),
+              tertiaryBorderColor:  v('--border'),
+              tertiaryTextColor:    v('--fg'),
+              // notes, special callouts
+              noteBkgColor:         v('--bg-subtle'),
+              noteBorderColor:      v('--border'),
+              noteTextColor:        v('--fg-muted'),
+                        // labels on arrows
+              labelColor:           v('--fg'),
+              // titles
+              titleColor:           v('--green'),
+              // errors
+              errorBkgColor:        v('--bg-subtle'),
+              errorTextColor:       v('--accent'),
+            }
+          });
+        </script>
+    {% endif %}
 {% endblock %}
 {% block copyright %}
     &copy; {{ article.date.year }} {{ article.author if article.author else AUTHOR }}

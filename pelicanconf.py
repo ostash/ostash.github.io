@@ -3,6 +3,15 @@ DEFAULT_CATEGORY = ""
 DISPLAY_CATEGORIES_ON_MENU = False
 DELETE_OUTPUT_DIRECTORY = True
 # MARKDOWN
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "markdown.extensions.meta": {},
+        "plugins.mermaid": {},
+    },
+    "output_format": "html5",
+}
 PATH = "content"
 ARTICLE_PATHS = ["posts"]
 SITENAME = "Below the ABI"
