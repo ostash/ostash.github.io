@@ -38,7 +38,9 @@ TEMPLATE_PAGES = {
 DIRECT_TEMPLATES = ["index", "tags", "archives"]  # 'categories', 'authors'
 AUTHOR = "Viktor Ostashevskyi"
 EXTRA_PATH_METADATA = {
+    "static/apple-touch-icon.png": {"path": "apple-touch-icon.png"},
     "static/favicon.ico": {"path": "favicon.ico"},
+    "static/favicon.svg": {"path": "favicon.svg"},
     "static/.nojekyll": {"path": ".nojekyll"},
 }
 FEED_ALL_RSS = "feeds/all.rss.xml"
