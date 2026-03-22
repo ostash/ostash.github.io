@@ -1,7 +1,6 @@
 {# SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> #}
 {# SPDX-License-Identifier: CC-BY-SA-4.0 #}
 {% extends "base.html" %}
-{% block title %}{{ SITENAME }}{% endblock %}
 {% block content %}
     <div class="post-list">
         {% for article in articles_page.object_list %}

@@ -2,6 +2,8 @@
 {# SPDX-License-Identifier: CC-BY-SA-4.0 #}
 {% extends "base.html" %}
 {% block title %}{{ page.title }} &ndash; {{ SITENAME }}{% endblock %}
+{% block canonical_url %}{{ SITEURL }}/{{ page.url }}{% endblock %}
+{% block description %}{{ page.description if page.description else SITE_DESCRIPTION }}{% endblock %}
 {% block content %}
     <article>
         <header class="article-header">

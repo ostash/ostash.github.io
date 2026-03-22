@@ -2,6 +2,7 @@
 {# SPDX-License-Identifier: CC-BY-SA-4.0 #}
 {% extends "base.html" %}
 {% block title %}#{{ tag }} &ndash; {{ SITENAME }}{% endblock %}
+{% block canonical_url %}{{ SITEURL }}/{{ tag.url }}{% endblock %}
 {% block content %}
     <h1>#{{ tag }}</h1>
     <div class="post-list">

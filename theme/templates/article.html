@@ -2,12 +2,55 @@
 {# SPDX-License-Identifier: CC-BY-SA-4.0 #}
 {% extends "base.html" %}
 {% block title %}{{ article.title }} &ndash; {{ SITENAME }}{% endblock %}
-{% block og %}
-    <meta property="og:title" content="{{ article.title|striptags }}">
-    <meta property="og:description"
-          content="{{ article.summary|striptags|truncate(160) }}">
-    <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
-    <meta property="og:type" content="article">
+{% block canonical_url %}{{ SITEURL }}/{{ article.url }}{% endblock %}
+{% block description %}{{ article.description if article.description else SITE_DESCRIPTION }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block extra_head %}
+        <meta property="article:published_time" content="{{ article.date.isoformat() }}">
+    {% if article.modified %}
+        <meta property="article:modified_time" content="{{ article.modified.isoformat() }}">
+    {% endif %}
+    {% for tag in article.tags %}
+        <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+    {% if 'class="mermaid"' in article.content %}
+        <script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+          const v = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+          mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+              // base
+              background:           v('--bg'),
+              primaryColor:         v('--bg-subtle'),
+              primaryBorderColor:   v('--border'),
+              primaryTextColor:     v('--fg'),
+              lineColor:            v('--fg-muted'),
+              edgeLabelBackground:  v('--bg-subtle'),
+              // highlighted nodes
+              secondaryColor:       v('--bg-subtle'),
+              secondaryBorderColor: v('--accent'),
+              secondaryTextColor:   v('--fg'),
+              // tertiary / clusters
+              tertiaryColor:        v('--bg-subtle'),
+              tertiaryBorderColor:  v('--border'),
+              tertiaryTextColor:    v('--fg'),
+              // notes, special callouts
+              noteBkgColor:         v('--bg-subtle'),
+              noteBorderColor:      v('--border'),
+              noteTextColor:        v('--fg-muted'),
+                        // labels on arrows
+              labelColor:           v('--fg'),
+              // titles
+              titleColor:           v('--green'),
+              // errors
+              errorBkgColor:        v('--bg-subtle'),
+              errorTextColor:       v('--accent'),
+            }
+          });
+        </script>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <article>
@@ -49,44 +92,6 @@
             </section>
         {% endif %}
     </article>
-    {% if 'class="mermaid"' in article.content %}
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-          const v = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-          mermaid.initialize({
-            startOnLoad: true,
-            theme: 'base',
-            themeVariables: {
-              // base
-              background:           v('--bg'),
-              primaryColor:         v('--bg-subtle'),
-              primaryBorderColor:   v('--border'),
-              primaryTextColor:     v('--fg'),
-              lineColor:            v('--fg-muted'),
-              edgeLabelBackground:  v('--bg-subtle'),
-              // highlighted nodes
-              secondaryColor:       v('--bg-subtle'),
-              secondaryBorderColor: v('--accent'),
-              secondaryTextColor:   v('--fg'),
-              // tertiary / clusters
-              tertiaryColor:        v('--bg-subtle'),
-              tertiaryBorderColor:  v('--border'),
-              tertiaryTextColor:    v('--fg'),
-              // notes, special callouts
-              noteBkgColor:         v('--bg-subtle'),
-              noteBorderColor:      v('--border'),
-              noteTextColor:        v('--fg-muted'),
-                        // labels on arrows
-              labelColor:           v('--fg'),
-              // titles
-              titleColor:           v('--green'),
-              // errors
-              errorBkgColor:        v('--bg-subtle'),
-              errorTextColor:       v('--accent'),
-            }
-          });
-        </script>
-    {% endif %}
 {% endblock %}
 {% block copyright %}
     &copy; {{ article.date.year }} {{ article.author if article.author else AUTHOR }}

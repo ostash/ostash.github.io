@@ -92,6 +92,7 @@ GISCUS = {
     "input-position": "top",
     "theme": "dark",
 }
+SITE_DESCRIPTION = "A learning journal about building an LLVM backend for the 8086, documenting every step from scratch."
 
 # Things which differs for publish
 SITEURL = ""
