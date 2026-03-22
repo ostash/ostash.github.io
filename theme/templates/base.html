@@ -12,14 +12,7 @@
         <link rel="icon" type="image/svg+xml" href="{{ SITEURL }}/favicon.svg">
         <link rel="icon" type="image/x-icon"  href="{{ SITEURL }}/favicon.ico">
         <link rel="apple-touch-icon" href="{{ SITEURL }}/apple-touch-icon.png">
-        <link rel="alternate"
-              type="application/atom+xml"
-              title="{{ SITENAME }} Atom Feed"
-              href="{{ SITEURL }}/feeds/all.atom.xml">
-        <link rel="alternate"
-              type="application/rss+xml"
-              title="{{ SITENAME }} RSS Feed"
-              href="{{ SITEURL }}/feeds/all.rss.xml">
+        <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }} RSS Feed" href="{{ SITEURL }}/feeds/rss.xml">
         {% block extra_head %}{% endblock %}
         {% block og %}{% endblock %}
     </head>
@@ -45,8 +38,7 @@
                         {% for name, url in SOCIAL %}<a href="{{ url }}">{{ name }}</a>{% endfor %}
                     </div>
                 {% endif %}
-                <a href="{{ SITEURL }}/feeds/all.atom.xml" class="feed-link">atom</a>
-                <a href="{{ SITEURL }}/feeds/all.rss.xml" class="feed-link">rss</a>
+                <a href="{{ SITEURL }}/feeds/rss.xml" class="feed-link">rss</a>
             </div>
         </footer>
         <div class="site-copyright">
