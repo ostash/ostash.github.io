@@ -2,6 +2,7 @@
 {# SPDX-License-Identifier: CC-BY-SA-4.0 #}
 {% extends "base.html" %}
 {% block content %}
+    <h1 class="visually-hidden">{{ SITENAME }}</h1>
     <div class="post-list">
         {% for article in articles_page.object_list %}
             <article class="post-entry">
