@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua>
 # SPDX-License-Identifier: GPL-3.0-only
 
+import html
+import logging
 import re
 from markdown import Extension
 from markdown.preprocessors import Preprocessor
@@ -10,6 +12,8 @@ from markdown.preprocessors import Preprocessor
 # The closing is a plain ``` with optional trailing whitespace.
 _OPEN = re.compile(r"^```mermaid\s*$")
 _CLOSE = re.compile(r"^```\s*$")
+_MARKER = "<!-- mermaid-diagrams-present -->"
+logger = logging.getLogger(__name__)
 
 
 class MermaidPreprocessor(Preprocessor):
@@ -31,6 +35,7 @@ class MermaidPreprocessor(Preprocessor):
     def run(self, lines):
         out = []
         in_block = False
+        found_diagram = False
         buf = []
         for line in lines:
             if not in_block and _OPEN.match(line):
@@ -43,8 +48,11 @@ class MermaidPreprocessor(Preprocessor):
                 # for the parser to recognise the <div> as a block-level element.
                 in_block = False
                 out.append("")
+                if not found_diagram:
+                    out.append(_MARKER)
+                    found_diagram = True
                 out.append('<div class="diagram"><pre class="mermaid">')
-                out.extend(buf)
+                out.append(html.escape("\n".join(buf)))
                 out.append("</pre></div>")
                 out.append("")
             elif in_block:
@@ -52,6 +60,10 @@ class MermaidPreprocessor(Preprocessor):
                 buf.append(line)
             else:
                 out.append(line)
+        if in_block:
+            logger.warning("Unclosed mermaid fence; rendering block as plain text")
+            out.append("```mermaid")
+            out.extend(buf)
         return out
 
 
