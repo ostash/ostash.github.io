@@ -1,7 +1,7 @@
 date: 2026-03-19
+description: An introduction to a learning journal series about building an LLVM backend from scratch, targeting the 8086.
 license: CC-BY-4.0
 slug: llvm-ia16-intro
-summary: An introduction to a learning journal series about building an LLVM backend from scratch, targeting the 8086.
 tags: 8086, backend, compilers, ia16, llvm
 title: Learning to write an LLVM backend, one small step at a time
 
