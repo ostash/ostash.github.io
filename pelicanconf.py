@@ -8,6 +8,7 @@ MARKDOWN = {
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
         "markdown.extensions.meta": {},
+        "markdown.extensions.smarty": {},
         "plugins.mermaid": {},
     },
     "output_format": "html5",
@@ -16,7 +17,6 @@ PATH = "content"
 ARTICLE_PATHS = ["posts"]
 SITENAME = "Below the ABI"
 STATIC_PATHS = ["static"]
-TYPOGRIFY = True
 ARTICLE_URL = "posts/{slug}/"
 ARTICLE_SAVE_AS = "posts/{slug}/index.html"
 DRAFT_URL = "drafts/posts/{slug}/"
