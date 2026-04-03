@@ -13,7 +13,7 @@
     --green: #3fb950;
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
     --font-body: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
-    --max-width: 740px;
+    --max-width: 920px;
     --line: 1.7;
 }
 
@@ -201,7 +201,7 @@ main {
 .article-content {
     hyphens: auto;
     line-height: var(--line);
-    text-align: justify;
+    text-align: left;
 }
 
 .article-content h2 {
@@ -251,10 +251,13 @@ main {
 }
 
 .article-content table {
-    width: 100%;
+    width: fit-content;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
     font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 .article-content th,
