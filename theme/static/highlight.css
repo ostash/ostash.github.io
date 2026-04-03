@@ -1,0 +1,233 @@
+/* SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua> */
+/* SPDX-License-Identifier: CC-BY-SA-4.0 */
+
+/**
+ * Pygments syntax highlighting token classes.
+ *
+ * This file defines styles for all Pygments token types emitted by the
+ * Python-Markdown code highlighter. Token classes are organized by semantic
+ * purpose (comments, keywords, strings, etc.) with inline documentation.
+ *
+ * See: https://pygments.org/docs/tokens/
+ */
+
+/* ── Base highlight container ── */
+.highlight {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 1.5rem 0;
+}
+
+.highlight pre {
+    border: none;
+    margin: 0;
+}
+
+/* ── Comments ── */
+
+/* Comments: regular, inline, block, hashbang, special */
+.highlight .c,
+.highlight .c1,
+.highlight .ch,
+.highlight .cm,
+.highlight .cs {
+    color: #6e7681;
+    font-style: italic;
+}
+
+/* Docstrings — visually closer to comments than to string data */
+.highlight .sd {
+    color: #6e7681;
+    font-style: italic;
+}
+
+/* ── Preprocessor and metadata ── */
+
+/* Preprocessor directive (#define, #ifdef, etc.) */
+.highlight .cp,
+.highlight .cpf {
+    color: #ffa657;
+}
+
+/* Decorators (@decorator, #[attribute]) */
+.highlight .nd {
+    color: #ffa657;
+}
+
+/* Escape sequence outside a string context */
+.highlight .esc {
+    color: #ffa657;
+}
+
+/* ── Keywords and control flow ── */
+
+/* Keywords: generic, constant (NULL/true), declaration (int/static),
+   namespace (import/from), pseudo (self/cls), reserved, type (int/void/char) */
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
+    color: #ff7b72;
+}
+
+/* ── Strings and string-like literals ── */
+
+/* Strings: generic, single/double quoted, affix (f""/b""), backtick,
+   char literal, delimiter, heredoc, regex, symbol, other */
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .dl,
+.highlight .sh,
+.highlight .sr,
+.highlight .ss,
+.highlight .sx {
+    color: #a5d6ff;
+}
+
+/* String escape sequences (\n, \t) and interpolation (${}, %s) */
+.highlight .se,
+.highlight .si {
+    color: #ffa657;
+}
+
+/* ── Numbers and numeric operators ── */
+
+/* Numbers: generic, binary, float, hex, integer, octal, long integer */
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .il {
+    color: #79c0ff;
+}
+
+/* Operators: symbolic and word (and/or/not/in) */
+.highlight .o,
+.highlight .ow {
+    color: #ff7b72;
+}
+
+/* Punctuation: brackets, commas, semicolons */
+.highlight .p,
+.highlight .pm {
+    color: var(--fg);
+}
+
+/* ── Names and identifiers ── */
+
+/* Names — plain identifiers, variables, properties, etc. */
+.highlight .n,
+.highlight .ni,
+.highlight .nl,
+.highlight .nv,
+.highlight .nx,
+.highlight .py,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+    color: var(--fg);
+}
+
+/* Builtins: standard library names and pseudo-variables (self/cls/True/False) */
+.highlight .nb,
+.highlight .bp {
+    color: #79c0ff;
+}
+
+/* Named constants (MY_CONST), namespaces, attributes */
+.highlight .no,
+.highlight .nn,
+.highlight .na {
+    color: #79c0ff;
+}
+
+/* HTML/XML tag names */
+.highlight .nt {
+    color: #ff7b72;
+}
+
+/* ── Functions and declarations ── */
+
+/* Functions, classes, exceptions, magic methods (__init__ etc.) */
+.highlight .nf,
+.highlight .nc,
+.highlight .ne,
+.highlight .fm,
+.highlight .vm {
+    color: #d2a8ff;
+}
+
+/* ── Generic tokens — diffs, terminal output, rendered docs ── */
+
+/* Generic tokens — used in diffs, terminal output, and rendered docs */
+.highlight .g,
+.highlight .go,
+.highlight .l,
+.highlight .ld,
+.highlight .w,
+.highlight .x {
+    color: var(--fg);
+}
+
+/* Generic: emphasis (apply only style, not color) */
+.highlight .ge,
+.highlight .ges {
+    font-style: italic;
+}
+
+/* Generic: strong (apply only style, not color) */
+.highlight .gs,
+.highlight .ges {
+    font-weight: bold;
+}
+
+/* Diff: inserted line */
+.highlight .gi {
+    color: #3fb950;
+}
+
+/* Diff: deleted line */
+.highlight .gd {
+    color: #ff7b72;
+}
+
+/* Generic: output and traceback text */
+.highlight .gt {
+    color: var(--fg-muted);
+}
+
+/* Generic: shell prompt */
+.highlight .gp {
+    color: #ffa657;
+}
+
+/* Generic: error message */
+.highlight .gr {
+    color: #ff7b72;
+}
+
+/* Generic: section heading */
+.highlight .gh {
+    color: #d2a8ff;
+    font-weight: bold;
+}
+
+/* Generic: section subheading */
+.highlight .gu {
+    color: #79c0ff;
+}
+
+/* Lexer error */
+.highlight .err {
+    color: #ff7b72;
+}

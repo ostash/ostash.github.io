@@ -1,6 +1,8 @@
 /* SPDX-FileCopyrightText: 2026 Viktor Ostashevskyi <ostash@ostash.kiev.ua>
    SPDX-License-Identifier: CC-BY-SA-4.0 */
 
+@import url('highlight.css');
+
 :root {
     --bg: #0f1117;
     --bg-subtle: #161b22;
@@ -301,65 +303,6 @@ pre code {
     font-size: 0.875rem;
 }
 
-/* Pygments syntax highlight */
-.highlight {
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    margin: 1.5rem 0;
-}
-
-.highlight pre {
-    border: none;
-    margin: 0;
-}
-
-.highlight .c,
-.highlight .c1,
-.highlight .cm {
-    color: #6e7681;
-    font-style: italic;
-}
-
-.highlight .k,
-.highlight .kn,
-.highlight .kd {
-    color: #ff7b72;
-}
-
-.highlight .s,
-.highlight .s1,
-.highlight .s2 {
-    color: #a5d6ff;
-}
-
-.highlight .n {
-    color: var(--fg);
-}
-
-.highlight .nf,
-.highlight .nc {
-    color: #d2a8ff;
-}
-
-.highlight .mi,
-.highlight .mf {
-    color: #79c0ff;
-}
-
-.highlight .o {
-    color: #ff7b72;
-}
-
-.highlight .cp {
-    color: #ffa657;
-}
-
-.highlight .nn,
-.highlight .na {
-    color: #79c0ff;
-}
-
 /* ── Article nav ── */
 .article-nav {
     display: flex;
@@ -497,7 +440,7 @@ footer {
     border-top: 1px solid var(--border);
 }
 
-/* Mermaid diagrams */
+/* ── Mermaid diagrams ── */
 .diagram {
     margin: 1.5rem 0;
     overflow-x: auto;
